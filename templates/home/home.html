@@ -1,0 +1,70 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block header %}
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<header class="header masthead text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <p style="font-family: monospace;"><span class='wave'>&#128075;</span> Hi, I am Pham Van Minh</span></p></p>
+        <!-- Masthead Heading-->
+        <h1 class=" text-uppercase mb-0">I'm a Backend Developer. This is my portfolio</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0" style="font-family: monospace;">Python - Boostrap - Cloud Computing</p>
+        <div class="mt-4">
+            {% for button in buttons %}
+                <a href="{{ button.file.url }}" target="_blank" class="btn btn-custom">{{ button.button_title }}</a>
+            {% endfor %}
+            <a href="/project" class="btn btn-custom">My Projects</a>
+        </div>
+    </div>
+</header>
+<section class="about-me-section" id="about-me-section">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title">About Me</h2>
+                <p class="mt-4"><span class="wave">👋</span> Hi,</p>
+                <p>{{ aboutme.content|safe }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for achievement in achievements %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img class="d-block carousel-img" src="{{ achievement.image.url }}" alt="Slide {{ forloop.counter }}">
+                            <div class="carousel-title carousel-caption d-none d-md-block">
+                                <h5>{{ achievement.title }}</h5>
+                              </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block js %}
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

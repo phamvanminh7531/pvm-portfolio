@@ -1,0 +1,60 @@
+{% extends "home/base.html" %}
+
+{% load static %}
+
+{% block header %}
+<link href="{% static 'css/project.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<section class="project-section mt-3">
+    <div class="container">
+        <h2 class="section-title">Projects Completed</h2>
+        {% for project in page_obj %}
+         <div class="row project-item py-4 px-3 mb-3">
+            <div class="col-md-4">
+                <img class="project-item-img" src="{{ project.image.url }}" alt="">
+            </div>
+            <div class="col-md-8">
+                <h3 class="item-title">{{ project.title }}</h3>
+                <div>{{ project.content|safe }}</div>
+                <h4>Technologies used</h4>
+                {% for tag in project.tech_used_tag.all %}
+                    <span class="tech-used-tag py-1 px-3"><i class="{{ tag.icon }}"></i> {{ tag.tag_name }}</span>
+                {% endfor %}
+                <div class="d-flex mt-3">
+                    {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank" class="btn btn-primary git-btn"><i class="bi bi-github""></i> Github</button></a>
+                    {% endif %}
+
+                    {% if project.github_link %}
+                        <a href="{{ project.demo_link }}" target="_blank" class="btn btn-primary demo-btn">Demo <i class="bi bi-box-arrow-up-right"></i></button></a>
+                    {% endif %}
+
+                    {% if project.document_link %}
+                        <a href="{{ project.document_link.url }}" target="_blank" class="btn btn-primary demo-btn"><i class="bi bi-file-text"></i> Document</i></button></a>
+                    {% endif %}
+                </div>
+            </div>
+         </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-12">
+                <div class="pagination mb-3 d-flex justify-content-center">
+                    <a class="btn btn-custom {% if not page_obj.has_previous %}disabled{% endif %}" 
+                    href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
+                    <i class="bi bi-caret-left"></i> Previous
+                 </a>
+                 <a class="btn btn-custom {% if not page_obj.has_next %}disabled{% endif %}" 
+                    href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
+                    Next <i class="bi bi-caret-right"></i>
+                 </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block js %}
+{% endblock %}

@@ -1,0 +1,15 @@
+.navbar-custom {
+    background-color: rgb(17 24 39);
+}
+
+.footer-custom {
+    background-color: rgb(17 24 39);
+}
+body {
+    padding-top: 110px;
+  }
+  @media (max-width: 979px) {
+    body {
+      padding-top: 0px;
+    }
+  }
