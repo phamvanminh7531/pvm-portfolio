@@ -23,7 +23,7 @@
                 {% for tag in project.tech_used_tag.all %}
                     <span class="tech-used-tag py-1 px-3"><i class="{{ tag.icon }}"></i> {{ tag.tag_name }}</span>
                 {% endfor %}
-                <div class="d-flex mt-3">
+                <!-- <div class="d-flex mt-3">
                     {% if project.github_link %}
                         <a href="{{ project.github_link }}" target="_blank" class="btn btn-primary git-btn"><i class="bi bi-github""></i> Github</button></a>
                     {% endif %}
@@ -35,6 +35,21 @@
                     {% if project.document_link %}
                         <a href="{{ project.document_link.url }}" target="_blank" class="btn btn-primary demo-btn"><i class="bi bi-file-text"></i> Document</i></button></a>
                     {% endif %}
+                </div> -->
+                <div>
+                    <span class="d-flex mt-3">
+                        {% if project.github_link %}
+                            <a href="{{ project.github_link }}" target="_blank" class="btn btn-primary git-btn"><i class="bi bi-github""></i> Github</button></a>
+                        {% endif %}
+    
+                        {% if project.github_link %}
+                            <a href="{{ project.demo_link }}" target="_blank" class="btn btn-primary demo-btn">Demo <i class="bi bi-box-arrow-up-right"></i></button></a>
+                        {% endif %}
+    
+                        {% if project.document_link %}
+                            <a href="{{ project.document_link.url }}" target="_blank" class="btn btn-primary demo-btn"><i class="bi bi-file-text"></i> Document</i></button></a>
+                        {% endif %}
+                    </span>
                 </div>
             </div>
          </div>

@@ -10,9 +10,12 @@ section {
 }
 
 .tech-used-tag {
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-right: 5px;
     background-image: linear-gradient(45deg, rgb(78, 181, 255), rgb(0, 76, 255));
     border-radius: 50px;
+    display: inline-block;
 }
 
 .d-flex{
