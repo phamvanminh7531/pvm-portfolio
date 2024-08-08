@@ -1,6 +1,6 @@
 from django.db import models
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.core.exceptions import ValidationError
+from django_ckeditor_5.fields import CKEditor5Field
 
 # Create your models here.
 class AchievementModel(models.Model):
@@ -19,7 +19,7 @@ class HomeButtonModel(models.Model):
 
 
 class AboutMeModel(models.Model):
-    content = RichTextUploadingField()
+    content = CKEditor5Field('Text', config_name='extends')
 
     def save(self, *args, **kwargs):
         if not self.pk and AboutMeModel.objects.exists():
@@ -44,7 +44,7 @@ class TechUsedTagModel(models.Model):
 class ProjectModel(models.Model):
     title = models.CharField(max_length=100, null=False, blank=False)
     image = models.FileField(upload_to="images/", blank=True)
-    content = RichTextUploadingField()
+    content = CKEditor5Field('Text', config_name='extends')
     github_link = models.URLField(null=True, blank=True, default=None)
     demo_link = models.URLField(null=True, blank=True, default=None)
     document_link = models.FileField(upload_to="pdfs/", blank=True, null=True, default=None)
